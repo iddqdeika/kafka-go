@@ -272,7 +272,7 @@ func (batch *Batch) readMessage(
 			//   to MaxBytes truncation
 			// - `batch.lastOffset` to ensure that the message format contains
 			//   `lastOffset`
-			if batch.err == io.EOF && batch.msgs.lengthRemain == 0 && batch.lastOffset != -1 {
+			if batch.err == io.EOF && batch.msgs.lengthRemain <= 0 && batch.lastOffset != -1 {
 				// Log compaction can create batches that end with compacted
 				// records so the normal strategy that increments the "next"
 				// offset as records are read doesn't work as the compacted
